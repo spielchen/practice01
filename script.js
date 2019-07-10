@@ -30,13 +30,18 @@ let appData = {
 	period: 3,
 
 asking: function(){
-	if((itemIncome == "" || itemIncome == null)){
-	if(confirm("Есть ли у вас дополнительный зарaботок?")){
-		let itemIncome = prompt("Какой у вас дополнительный зарaботок?", "Таксует");
-		let cashIncome = prompt("Сколько в месяц вы на этом зарабатывает?", 10000);
-		appData.income[itemIncome] = cashIncome;
-	}; 
-};
+	if(confirm("Есть ли у вас дополнительный заработок?")){
+		let itemIncome,
+			cashIncome;
+			itemIncome = prompt("Какой у вас дополнительный заработок?", "Таксую");
+			cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?", 10000);
+
+			while(itemIncome == "" || itemIncome == null || isNaN(cashIncome)){
+				itemIncome = prompt("Какой у вас дополнительный заработок?", "Таксую");
+				cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?", 10000);
+			}
+			appData.income[itemIncome] = cashIncome;
+}
 	let question, answer,
 			addExpenses = prompt("Перечислите возможные расходы через запятую?");
 			appData.deposit = confirm("Есть ли у вас депозит в банке?");
